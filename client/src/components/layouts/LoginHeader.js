@@ -6,16 +6,16 @@ const LoginHeader = () => {
     return (
         <Menu style={{ fontSize: '20px' }} pointing secondary>
             <Link to="/">
-                <a className='item active' >DeVote</a>
+                <span className='item active'>DeVote</span>
             </Link>
             <Link to="/about">
-                <a className='item' >About Us</a>
+                <span className='item' >About Us</span>
             </Link>
 
             <Menu.Menu position='right'>
-                <Menu.Item
-                    name='Sign Up'
-                />
+                <Link to="/signup">
+                    <span className='item' >Sign Up</span>
+                </Link>
             </Menu.Menu>
         </Menu>
     )
