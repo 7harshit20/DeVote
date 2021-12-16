@@ -9,6 +9,10 @@ const SignUp = () => {
         email: '',
         password: ''
     })
+    const [err, setErr] = useState({
+        type: null,
+        msg: null
+    })
 
     const onChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,6 +20,10 @@ const SignUp = () => {
 
     const onSubmit = e => {
         e.preventDefault();
+
+        // api call to signup
+
+        setErr({ msg: 'Email already exists!' });
     }
 
     return (
@@ -27,10 +35,12 @@ const SignUp = () => {
                     <Header as='h1' color='black' textAlign='center'>
                         <Image src={image} /> <br /> <br />
                         Sign up to <span style={{ color: 'red' }}>conduct</span>, <span style={{ color: 'blue' }}>contest</span> and <span style={{ color: 'green' }}>vote</span>
-
                     </Header>
+
+                    {err.msg !== null ? <Message warning header={err.msg} /> : null}
                     <Form onSubmit={onSubmit} size='large'>
                         <Segment padded stacked>
+
 
                             <Form.Input name='name' onChange={onChange} required={true} size='big' fluid icon='user' iconPosition='left' placeholder='Name'
                             />
