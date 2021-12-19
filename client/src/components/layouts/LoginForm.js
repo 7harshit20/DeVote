@@ -1,20 +1,36 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { Button, Input, Icon, Message } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+// import { useCookies } from 'react-cookie';
+import AuthContext from '../../context/auth/AuthContext'
 
 
 const LoginForm = () => {
+    const authContext = useContext(AuthContext);
+    const { isAuthenicated, error, login, loadUser } = authContext;
+    const navigate = useNavigate();
+
+    // const [cookies, setCookie] = useCookies();
     const [show, setShow] = useState(false);
     const [form, setForm] = useState({
         email: '',
-        password: ''
+        password: '',
     })
     const [err, setErr] = useState({
         type: null,
         msg: null
     })
 
-    const { email, password } = form;
+    useEffect(() => {
+        loadUser();
+        // eslint-disable-next-line
+    }, [])
+
+    useEffect(() => {
+        if (isAuthenicated) navigate('/election');
+        setErr({ msg: error });
+
+    }, [isAuthenicated, error, navigate])
 
     const onChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -22,38 +38,7 @@ const LoginForm = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        setErr({ type: null, msg: null });
-        // eslint-disable-next-line
-        const emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (email === '') {
-            setErr({
-                type: 'email',
-                msg: 'Please fill in a email'
-            })
-            return;
-        }
-        if (password === '') {
-            setErr({
-                type: 'password',
-                msg: 'Please provide a password'
-            })
-            return;
-        }
-        if (!email.match(emailformat)) {
-            setErr({
-                type: 'email',
-                msg: 'Please provide a valid email'
-            })
-            return;
-        }
-
-
-        // api using axios
-
-        setErr({
-            type: null,
-            msg: 'Invalid email or password'
-        })
+        login(form);
     }
 
     return (
@@ -61,7 +46,6 @@ const LoginForm = () => {
 
             <h1 style={{ fontSize: '4vw' }} > <span style={{ color: 'blue' }}>Secured</span> and <span style={{ color: 'red' }}>Reliable</span> election on the go.</h1>
             <br />
-
             {err.msg !== null ? <Message error header={err.msg} /> : null}
 
             <Input error={err.type === 'email'} name='email' type='email' placeholder='Email' size='big' fluid focus onChange={onChange} /><br />

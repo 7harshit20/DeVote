@@ -23,15 +23,11 @@ router.post('/', async (req, res) => {
         await user.save();
 
         const payload = {
-            id: user.id,
+            id: user._id,
             name
         }
         const token = jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 60 * 60 * 24 * 14 });
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: false,
-            maxAge: 60 * 60 * 24 * 14
-        });
+        res.cookie('token', token);
 
         res.status(200).send('Registered');
 

@@ -1,14 +1,20 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useContext, useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import image from '../../images/devote.png'
+import AuthContext from '../../context/auth/AuthContext'
 
-const SignUp = () => {
+const SignUp = props => {
+
+    const authContext = useContext(AuthContext);
+    const { isAuthenicated, error, register, loading } = authContext
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         name: '',
         email: '',
-        password: ''
+        password: '',
     })
+    const [formLoad, setFormLoad] = useState(loading)
     const [err, setErr] = useState({
         type: null,
         msg: null
@@ -20,11 +26,15 @@ const SignUp = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-
-        // api call to signup
-
-        setErr({ msg: 'Email already exists!' });
+        setFormLoad(true);
+        register(form);
     }
+
+    useEffect(() => {
+        if (isAuthenicated) navigate('/election');
+        setErr({ msg: error });
+        setFormLoad(loading);
+    }, [isAuthenicated, error, loading, navigate])
 
     return (
         <Fragment>
@@ -38,7 +48,7 @@ const SignUp = () => {
                     </Header>
 
                     {err.msg !== null ? <Message warning header={err.msg} /> : null}
-                    <Form onSubmit={onSubmit} size='large'>
+                    <Form loading={formLoad} onSubmit={onSubmit} size='large'>
                         <Segment padded stacked>
 
 

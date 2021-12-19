@@ -4,9 +4,20 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 const { User } = require('../model/User');
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        return res.send(user);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send('Something went wrong');
+    }
+})
+
+router.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     const { error } = Joi.object({
@@ -25,11 +36,7 @@ router.get('/', async (req, res) => {
         };
 
         const token = jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 60 * 60 * 24 * 14 });
-        res.cookie('token', token, {
-            httpOnly: 'true',
-            secure: 'false',
-            maxAge: 60 * 60 * 14 * 24
-        })
+        res.cookie('token', token)
         res.send('Logged in');
     } catch (err) {
         console.log(err.message);
@@ -37,5 +44,9 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.delete('/', auth, async (req, res) => {
+    res.clearCookie('token');
+    res.send('Logout');
+})
 
 module.exports = router
