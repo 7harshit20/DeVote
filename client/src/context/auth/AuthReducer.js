@@ -3,6 +3,7 @@ import * as types from '../types';
 const AuthReducer = (state, action) => {
 
     if (action.type === types.REGISTER_SUCCESS || action.type === types.LOGIN_SUCCESS) {
+        localStorage.setItem('authenticated', 'true');
         return {
             ...state,
             isAuthenicated: true,
@@ -30,6 +31,7 @@ const AuthReducer = (state, action) => {
     }
 
     else if (action.type === types.LOGOUT_SUCCESS) {
+        localStorage.removeItem('authenticated');
         return {
             ...state,
             isAuthenicated: false,
@@ -50,42 +52,6 @@ const AuthReducer = (state, action) => {
         return state;
     }
 
-    // switch (action.type) {
-    //     case REGISTER_SUCCESS:
-    //         return {
-    //             ...state,
-    //             ...action.payload,
-    //             isAuthenicated: true,
-    //             loading: false,
-    //         };
-    //     case REGISTER_FAILURE:
-    //     case AUTH_ERROR:
-    //     case LOGIN_FAILURE:
-    //     case LOGOUT:
-    //         localStorage.removeItem('token');
-    //         return {
-    //             ...state,
-    //             token: null,
-    //             isAuthenicated: false,
-    //             loading: false,
-    //             user: null,
-    //             error: action.payload
-    //         };
-    //     case CLEAR_ERRORS:
-    //         return {
-    //             ...state,
-    //             error: null
-    //         }
-    //     case USER_LOADED:
-    //         return {
-    //             ...state,
-    //             isAuthenicated: true,
-    //             loading: false,
-    //             user: action.payload
-    //         }
-    //     default:
-    //         return state;
-    // }
 }
 
 export default AuthReducer;

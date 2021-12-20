@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import AuthContext from '../../context/auth/AuthContext'
-import { Link, useNavigate } from 'react-router-dom'
-import { Container, Button } from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
 import Navbar from '../layouts/Navbar'
 
-const Election = () => {
+const Poll = () => {
     const authContext = useContext(AuthContext)
     const { isAuthenicated } = authContext;
 
@@ -15,19 +15,13 @@ const Election = () => {
     }, [isAuthenicated, navigate])
 
     return (
+
         <Container style={{ margin: '5px' }}>
-            <Navbar curr={'election'} />
-            <h3>Live Elections</h3>
-            <Link to='/election/new'>
-                <a><Button floated='right' content='Conduct elction' icon='add circle' primary labelPosition='right' /></a>
-            </Link>
-            {/* {getCampaign()} */}
+            <Navbar curr={'poll'} />
+
         </Container>
     )
 }
 
-export default Election
-
-
-
+export default Poll
 

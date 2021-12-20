@@ -22,7 +22,7 @@ const LoginForm = () => {
     })
 
     useEffect(() => {
-        loadUser();
+        if (localStorage.getItem('authenticated')) loadUser();
         // eslint-disable-next-line
     }, [])
 
