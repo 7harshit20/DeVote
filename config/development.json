@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://7harshit20:7harshit20@cluster0.qmrqk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "tercesStwj"
+    "jwtSecret": "tercesStwj",
+    "mnemonic": "warrior illegal process state menu tonight essay open charge lunch pizza host",
+    "infura_endpoint": "https://rinkeby.infura.io/v3/48e49577bc2e40239d6799bafbb99302"
 }

@@ -4,8 +4,8 @@ const { beforeEach } = require('mocha');
 const Web3 = require('web3');
 const web3 = new Web3(ganche.provider());
 
-const Devote = require('../ethereum/build/Devote.json');
-const Election = require('../ethereum/build/Election.json');
+const Devote = require('../src/ethereum/build/Devote.json');
+const Election = require('../src/ethereum/build/Election.json');
 
 let accounts, devote, election;
 

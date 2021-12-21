@@ -6,19 +6,24 @@ import SignUp from './components/pages/SignUp'
 import Election from './components/pages/Election'
 import AuthState from './context/auth/AuthState'
 import Poll from './components/pages/Poll'
+import ElectionState from './context/election/ElectionState'
+import ElectionForm from './components/layouts/ElectionForm'
 
 const App = () => {
   return (
     <AuthState>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/about' element={<About />} />
-          <Route exact path='/signup' element={<SignUp />} />
-          <Route exact path='/election' element={<Election />} />
-          <Route exact path='/poll' element={<Poll />} />
-        </Routes>
-      </BrowserRouter>
+      <ElectionState>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/about' element={<About />} />
+            <Route exact path='/signup' element={<SignUp />} />
+            <Route exact path='/election' element={<Election />} />
+            <Route exact path='/poll' element={<Poll />} />
+            <Route exact path='/election/new' element={<ElectionForm />} />
+          </Routes>
+        </BrowserRouter>
+      </ElectionState>
     </AuthState>
   )
 }

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { Button, Input, Icon, Message } from 'semantic-ui-react'
 import { Link, useNavigate } from 'react-router-dom'
-// import { useCookies } from 'react-cookie';
 import AuthContext from '../../context/auth/AuthContext'
 
 
@@ -10,7 +9,6 @@ const LoginForm = () => {
     const { isAuthenicated, error, login, loadUser } = authContext;
     const navigate = useNavigate();
 
-    // const [cookies, setCookie] = useCookies();
     const [show, setShow] = useState(false);
     const [form, setForm] = useState({
         email: '',
