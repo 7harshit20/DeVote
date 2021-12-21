@@ -9,13 +9,10 @@ const ElectionReducer = (state, action) => {
         };
     }
 
-    else if (action.type === types.REGISTER_FAILURE || action.type === types.LOAD_ERROR || action.type === types.LOGIN_FAILURE) {
+    else if (action.type === types.ELECTION_ERROR) {
         return {
             ...state,
-            isAuthenicated: false,
-            loading: false,
-            error: action.payload,
-            user: null
+            error: action.payload
         }
     }
 

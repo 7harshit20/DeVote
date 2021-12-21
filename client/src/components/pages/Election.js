@@ -17,6 +17,7 @@ const Election = () => {
     useEffect(() => {
         if (!isAuthenicated) navigate('/');
         getElections();
+        // eslint-disable-next-line
     }, [isAuthenicated, navigate])
 
     const displayElection = () => {
