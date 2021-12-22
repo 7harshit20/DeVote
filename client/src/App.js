@@ -11,6 +11,7 @@ import GetElection from './components/routes/Elections/GetElection'
 import Poll from './components/routes/Poll/Poll'
 import CandidateDetail from './components/routes/Elections/Election/CandidateDetail'
 import Vote from './components/routes/Elections/Election/Vote'
+import Nominate from './components/routes/Elections/Election/Nominate'
 import Election from './components/routes/Elections/Election/Election'
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
               <Route path={':address'} element={<Election />} >
                 <Route index element={<CandidateDetail />} />
                 <Route path='vote' element={<Vote />} />
+                <Route path='nominate' element={<Nominate />} />
               </Route>
             </Route>
 

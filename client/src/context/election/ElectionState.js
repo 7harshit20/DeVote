@@ -67,6 +67,21 @@ const ElectionState = props => {
         }
     }
 
+    const nominateCurr = async (address, name, party) => {
+        try {
+            dispatch({ type: types.SET_LOADING, payload: true });
+            const accounts = await web3.eth.getAccounts();
+            const curr = electionFunc(address);
+            await curr.methods.nominate(name, party).send({ from: accounts[0] })
+            dispatch({ type: types.SET_LOADING, payload: false });
+        } catch (error) {
+            console.log(error);
+            dispatch({ type: types.SET_LOADING, payload: false });
+            dispatch({ type: types.ELECTION_ERROR, payload: error });
+            setTimeout(clearError, 3000);
+        }
+    }
+
     const clearError = () => {
         dispatch({ type: types.CLEAR_ERROR })
     }
@@ -81,7 +96,8 @@ const ElectionState = props => {
             createElection,
             clearError,
             currElection,
-            voteCurr
+            voteCurr,
+            nominateCurr
         }}
     >
         {props.children};

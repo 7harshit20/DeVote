@@ -54,6 +54,9 @@ const ElectionDetail = () => {
                     <Link to={'vote'}>
                         <a><Button style={{ marginBottom: 10 }} primary>Vote</Button></a>
                     </Link>
+                    <Link to={'nominate'}>
+                        <a><Button floated='right' style={{ marginBottom: 10 }} primary>Nominate</Button></a>
+                    </Link>
                 </div>
             )}
             <Outlet />
