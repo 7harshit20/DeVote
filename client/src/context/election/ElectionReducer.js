@@ -1,18 +1,34 @@
 import * as types from '../types';
 
 const ElectionReducer = (state, action) => {
+    const { payload } = action
 
     if (action.type === types.SET_ELECTION) {
         return {
             ...state,
-            elections: action.payload
+            elections: payload,
+            curr: null
         };
+    }
+
+    else if (action.type === types.SET_CURR) {
+        return {
+            ...state,
+            curr: payload
+        };
+    }
+
+    else if (action.type === types.SET_LOADING) {
+        return {
+            ...state,
+            loading: payload
+        }
     }
 
     else if (action.type === types.ELECTION_ERROR) {
         return {
             ...state,
-            error: action.payload
+            error: payload
         }
     }
 

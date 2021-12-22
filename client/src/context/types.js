@@ -9,4 +9,8 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const SET_ELECTION = 'SET_ELECTION';
 export const ELECTION_ERROR = 'ELECTION_ERROR';
+export const SET_CURR = 'SET_CURR';
+export const VOTE_CURR = 'VOTE_CURR';
+export const SET_LOADING = 'SET_LOADING';
+
 

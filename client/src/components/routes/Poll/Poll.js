@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
-import AuthContext from '../../context/auth/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../../context/auth/AuthContext'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
-import Navbar from '../layouts/Navbar'
+import Navbar from '../../layouts/Navbar'
 
 const Poll = () => {
     const authContext = useContext(AuthContext)
@@ -18,7 +18,7 @@ const Poll = () => {
 
         <Container style={{ margin: '5px' }}>
             <Navbar curr={'poll'} />
-
+            <Outlet />
         </Container>
     )
 }
