@@ -2,5 +2,6 @@
     "mongoURI": "MONGO_URI",
     "jwtSecret": "JWT_SECRET",
     "mnemonic": "MNEMONIC",
-    "infura_endpoint": "INFURA_ENDPOINT"
+    "infura_endpoint": "INFURA_ENDPOINT",
+    "moralis_node": "MORALIS_NODE"
 }

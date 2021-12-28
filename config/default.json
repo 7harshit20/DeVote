@@ -3,5 +3,5 @@
     "jwtSecret": "",
     "mnemonic": "",
     "infura_endpoint": "",
-    "address": "0x3EEDFa0d5850a842F32ECf0c00F124e71C245202"
+    "moralis_node": ""
 }
